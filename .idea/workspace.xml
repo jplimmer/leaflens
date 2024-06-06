@@ -25,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jplimmer"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jplimmer&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/jplimmer/plant_health_checker.git",
-    "accountId": "f686eeb8-f3e6-4ccc-949a-e41f26074561"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jplimmer/plant_health_checker.git&quot;,
+    &quot;accountId&quot;: &quot;f686eeb8-f3e6-4ccc-949a-e41f26074561&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -51,7 +51,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "Python.plant_app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "flask-first-cut",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/james/OneDrive/Documents/Coding/Nod Bootcamp/Projects/Final Project/plant_health_checker"
   }
 }]]></component>

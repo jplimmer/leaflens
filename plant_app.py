@@ -34,13 +34,8 @@ def model_predict(img_path, model):
     # Load image and convert to array
     img = image.load_img(img_path, target_size=(224, 224))
     x = image.img_to_array(img)
-
     # Add batch dimension
     x = np.expand_dims(x, axis=0)
-
-    # Scale values to between 0 and 1
-    # x /= 255.0 # already handled in model
-
     # Get prediction from model
     preds = model.predict(x)
     return preds
@@ -62,6 +57,7 @@ def upload():
 
     if file:
         basepath = os.path.dirname(__file__)
+        # basepath = 'C:\\Users\\james\\OneDrive\\Documents\\Coding\\Nod Bootcamp\\Projects\\Final Project\\uploads'
         file_path = os.path.join(basepath, 'uploads', file.filename)
         file.save(file_path)
 
