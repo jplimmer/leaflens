@@ -3,17 +3,18 @@ from flask import Flask, request, render_template, redirect
 import os
 import numpy as np
 import tensorflow as tf
+import keras as keras
 from keras import models
 from keras.api.preprocessing import image
 
 
-path = 'C:\\Users\\james\\OneDrive\\Documents\\Coding\\Nod Bootcamp\\Projects\\Final Project\\'
+path = 'C:\\Users\\james\\OneDrive\\Documents\\Coding\\Nod Bootcamp\\Projects\\LeafLens\\'
 
 # Initiate Flask app object
 app = Flask(__name__)
 
 # Load pre-trained model
-loaded_model = models.load_model(path+'plant_model.keras')
+leaflens_model = models.load_model(path+'leaflens_model.keras')
 
 # Define class names (in order of model training)
 class_names = ['Apple - Apple Scab', 'Apple - Black Rot', 'Apple - Cedar Apple Rust', 'Apple - Healthy',
@@ -57,11 +58,10 @@ def upload():
 
     if file:
         basepath = os.path.dirname(__file__)
-        # basepath = 'C:\\Users\\james\\OneDrive\\Documents\\Coding\\Nod Bootcamp\\Projects\\Final Project\\uploads'
         file_path = os.path.join(basepath, 'uploads', file.filename)
         file.save(file_path)
 
-        preds = model_predict(file_path, loaded_model)
+        preds = model_predict(file_path, leaflens_model)
         probs = tf.nn.softmax(preds).numpy()
 
         result = class_names[np.argmax(probs)]
