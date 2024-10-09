@@ -32,6 +32,12 @@ When the user clicks `Check Health`, the application saves a copy of the image i
 The predictive Keras model can be compiled and saved in your Google Drive using the [Google Colab notebook](leaflens_model_training.ipynb). It then needs to be copied locally to the same directory as `leaflens_app.py`.
 
 
+## Model training
+Over 10 epochs, the model achieved accuracy of ~90% on the validation set:
+
+<img src="images/training_chart.png" width="70%">
+
+
 ## Future Development Ideas
 - Convert to mobile application for ease-of-use with camera.
 - Improve model training scores on existing dataset.
