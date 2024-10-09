@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/idea/
+.env
+
+# Ignore KERAS model (can be compiled and saved locally from Colab notebook)
+*.keras
+
+# JPG images from uploads ignored
+uploads/*.JPG
