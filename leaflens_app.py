@@ -3,18 +3,16 @@ from flask import Flask, request, render_template, redirect
 import os
 import numpy as np
 import tensorflow as tf
-import keras as keras
 from keras import models
 from keras.api.preprocessing import image
-
-
-path = 'C:\\Users\\james\\OneDrive\\Documents\\Coding\\Nod Bootcamp\\Projects\\LeafLens\\'
 
 # Initiate Flask app object
 app = Flask(__name__)
 
-# Load pre-trained model
-leaflens_model = models.load_model(path+'leaflens_model.keras')
+# Load pre-trained model (located in same directory as `leaflens_app.py`)
+base_path = os.path.dirname(__file__)
+model_path = os.path.join(base_path, 'leaflens_model.keras')
+leaflens_model = models.load_model(model_path)
 
 # Define class names (in order of model training)
 class_names = ['Apple - Apple Scab', 'Apple - Black Rot', 'Apple - Cedar Apple Rust', 'Apple - Healthy',
@@ -32,6 +30,7 @@ class_names = ['Apple - Apple Scab', 'Apple - Black Rot', 'Apple - Cedar Apple R
 
 
 def model_predict(img_path, model):
+    """Takes an image file and a pre-defined model as input, returns prediction and associated probability."""
     # Load image and convert to array
     img = image.load_img(img_path, target_size=(224, 224))
     x = image.img_to_array(img)
@@ -49,6 +48,8 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def upload():
+    """Saves user-selected image locally, then calls model_predict with image and leaflens_model"""
+    # Check if file present in POST
     if 'file' not in request.files:
         return redirect(request.url)
 
@@ -56,11 +57,17 @@ def upload():
     if file.filename == '':
         return redirect(request.url)
 
+    # Save uploaded image locally, then send to model_predict to return result
     if file:
-        basepath = os.path.dirname(__file__)
-        file_path = os.path.join(basepath, 'uploads', file.filename)
+        # Check `uploads` folder exists, create if not:
+        if not os.path.isdir('uploads'):
+            os.makedirs('uploads')
+
+        # Save uploaded image locally
+        file_path = os.path.join(base_path, 'uploads', file.filename)
         file.save(file_path)
 
+        # Call model_predict to obtain results and return to user
         preds = model_predict(file_path, leaflens_model)
         probs = tf.nn.softmax(preds).numpy()
 
